@@ -17,11 +17,21 @@
 #include <SDL.h>
 
 #include "pingus/pingus_main.hpp"
+#include "_ceu_app.h"
+
+#include "_ceu_app.c"
+#include "ceuvars.h"
 
 int main(int argc, char** argv)
 {
-  PingusMain app;
-  return app.run(argc, argv);
+
+static char CEU_DATA[sizeof(CEU_Main)];
+CEUapp.data = (tceu_org*) &CEU_DATA;
+CEUapp.init = &ceu_app_init;
+
+CEUapp.init(&CEUapp);    /* calls CEU_THREADS_MUTEX_LOCK() */
+    PingusMain app;
+    return app.run(argc, argv);
 }
 
 /* EOF */

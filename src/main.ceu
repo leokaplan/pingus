@@ -1,0 +1,3 @@
+every 1s do
+    _printf("oi\n");
+end

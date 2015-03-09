@@ -1,4 +1,4 @@
-//  Pingus - A free Lemmings clone
+//  Pingus - A free Lemmings clonu_sys_go(&app, CEU_IN__WCLOCK, &dt);
 //  Copyright (C) 2000 Ingo Ruhnke <grumbel@gmx.de>
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,9 @@
 #include "pingus/fonts.hpp"
 #include "pingus/globals.hpp"
 
+#include "_ceu_app.h"
+#include "ceuvars.h"
+//#include "_ceu_app.h"
 template<class C>
 void write(std::ostream& out, const C& value)
 {
@@ -196,7 +199,8 @@ ScreenManager::display()
       input_manager.update(previous_frame_time);
       input_controller->poll_events(events);
     }
-      
+    ceu_sys_go(&CEUapp, CEU_IN__WCLOCK, &previous_frame_time);
+
     if (record_input)
     {
       write(std::cerr, previous_frame_time);
