@@ -22,6 +22,7 @@
 #include "_ceu_app.c"
 #include "ceuvars.h"
 
+tceu_app CEUapp;
 int main(int argc, char** argv)
 {
 
