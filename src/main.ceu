@@ -1,3 +1,4 @@
-every 1s do
+input void SDL_REDRAW;
+every SDL_REDRAW do
     _printf("oi\n");
 end

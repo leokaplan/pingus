@@ -22,6 +22,8 @@
 #include "engine/display/sdl_framebuffer_surface_impl.hpp"
 #include "util/log.hpp"
 
+#include "_ceu_app.h"
+#include "ceuvars.h"
 namespace {
 
 SDL_Rect Intersection(SDL_Rect* r1, SDL_Rect* r2)
@@ -174,6 +176,8 @@ void
 SDLFramebuffer::flip()
 {
   SDL_RenderPresent(m_renderer);
+  ceu_sys_go(&CEUapp, CEU_IN_SDL_REDRAW, (tceu_evtp)(nullptr));
+
 }
 
 void
