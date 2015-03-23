@@ -68,6 +68,9 @@ install-data:
 
 install-man:
 	install -D doc/man/pingus.6 "$(DESTDIR)$(MANDIR)/man1/pingus.6"
+ceu:
+	cd src && ceu main.ceu && cd .. 
+	scons
 
 .PHONY : clean install install-exec install-data install-man
 
