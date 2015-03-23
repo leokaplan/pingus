@@ -7,5 +7,6 @@ var _SDL_Rect quad;
     quad.h = 50;
 
 every SDL_REDRAW do
-    _SDL_RenderFillRect(_m_renderer, &quad);
+       _printf("%x",{Display::get_framebuffer()});
+//    _SDL_RenderFillRect(_m_renderer, &quad);
 end

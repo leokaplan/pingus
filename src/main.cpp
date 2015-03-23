@@ -16,6 +16,7 @@
 
 #include <SDL.h>
 
+#include "engine/display/display.hpp"
 #include "pingus/pingus_main.hpp"
 #include "_ceu_app.h"
 #include "ceuvars.h"
