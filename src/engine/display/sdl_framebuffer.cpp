@@ -39,12 +39,11 @@ SDL_Rect Intersection(SDL_Rect* r1, SDL_Rect* r2)
 }
 
 } // namespace
-
 SDLFramebuffer::SDLFramebuffer() :
-  m_window(nullptr),
-  m_renderer(nullptr),
   cliprect_stack()
 {
+    m_window = nullptr;
+    m_renderer = nullptr;
 }
 
 SDLFramebuffer::~SDLFramebuffer()
@@ -175,9 +174,10 @@ SDLFramebuffer::fill_rect(const Rect& rect_, const Color& color)
 void
 SDLFramebuffer::flip()
 {
-  SDL_RenderPresent(m_renderer);
+  //flip é chamada quando a cena muda 
+  //SDL_RenderFillRect(m_renderer, &quad);
   ceu_sys_go(&CEUapp, CEU_IN_SDL_REDRAW, (tceu_evtp)(nullptr));
-
+  SDL_RenderPresent(m_renderer);
 }
 
 void

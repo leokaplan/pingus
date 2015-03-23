@@ -18,10 +18,12 @@
 
 #include "pingus/pingus_main.hpp"
 #include "_ceu_app.h"
-
-#include "_ceu_app.c"
 #include "ceuvars.h"
 
+#include "_ceu_app.c"
+
+SDL_Renderer * m_renderer;
+SDL_Window * m_window;
 tceu_app CEUapp;
 int main(int argc, char** argv)
 {

@@ -1,4 +1,11 @@
+#include "sdl.ceu"
 input void SDL_REDRAW;
+var _SDL_Rect quad;
+    quad.x = 100;
+    quad.y = 100;
+    quad.w = 50;
+    quad.h = 50;
+
 every SDL_REDRAW do
-    _printf("oi\n");
+    _SDL_RenderFillRect(_m_renderer, &quad);
 end

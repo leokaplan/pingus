@@ -22,8 +22,8 @@
 class SDLFramebuffer : public Framebuffer
 {
 private:
-  SDL_Window* m_window;
-  SDL_Renderer* m_renderer;
+  //SDL_Window* m_window;
+  //SDL_Renderer* m_renderer;
   std::vector<SDL_Rect> cliprect_stack;
 
 public:
