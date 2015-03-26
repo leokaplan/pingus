@@ -17,25 +17,26 @@
 #include <SDL.h>
 
 #include "engine/display/display.hpp"
+#include "engine/display/framebuffer.hpp"
 #include "pingus/pingus_main.hpp"
-#include "_ceu_app.h"
 #include "ceuvars.h"
 
 #include "_ceu_app.c"
 
-SDL_Renderer * m_renderer;
-SDL_Window * m_window;
+//SDL_Renderer * m_renderer;
+//SDL_Window * m_window;
 tceu_app CEUapp;
 int main(int argc, char** argv)
 {
-
+    PingusMain app;
 static char CEU_DATA[sizeof(CEU_Main)];
 CEUapp.data = (tceu_org*) &CEU_DATA;
 CEUapp.init = &ceu_app_init;
 
-CEUapp.init(&CEUapp);    /* calls CEU_THREADS_MUTEX_LOCK() */
-    PingusMain app;
-    return app.run(argc, argv);
+    CEUapp.init(&CEUapp);    /* calls CEU_THREADS_MUTEX_LOCK() */
+    app.run(argc, argv);
+
+    return 1;
 }
 
 /* EOF */

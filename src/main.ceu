@@ -6,7 +6,11 @@ var _SDL_Rect quad;
     quad.w = 50;
     quad.h = 50;
 
+var _SDL_Color color;
+    color.r = 0xFF;
+    color.g = 0x00;
+    color.b = 0x00;
+
 every SDL_REDRAW do
-       _printf("%x",{Display::get_framebuffer()});
-//    _SDL_RenderFillRect(_m_renderer, &quad);
+    call {Display::get_framebuffer()->fill_rect}({Rect(0, 0, 50, 60)}, {Color(155, 0, 155)})  ;//finalize with nothing; end;
 end

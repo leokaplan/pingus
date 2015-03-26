@@ -22,7 +22,6 @@
 #include "engine/display/sdl_framebuffer_surface_impl.hpp"
 #include "util/log.hpp"
 
-#include "_ceu_app.h"
 #include "ceuvars.h"
 namespace {
 
