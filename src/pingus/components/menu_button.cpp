@@ -21,6 +21,8 @@
 #include "math/vector2i.hpp"
 #include "pingus/screens/pingus_menu.hpp"
 
+#include "ceuvars.h"
+
 MenuButton::MenuButton(PingusMenu* menu_,
                        const Vector2i& pos_,
                        const std::string& text_, const std::string& desc_) :
@@ -50,6 +52,9 @@ MenuButton::MenuButton(PingusMenu* menu_,
 
   mouse_over = false;
   pressed    = false;
+
+printf("aaa %p\n", this);
+  ceu_sys_go(&CEUapp,CEU_IN_NEWBUTTON, this);
 }
 
 MenuButton::~MenuButton ()
@@ -87,18 +92,22 @@ MenuButton::update (float delta)
 void
 MenuButton::on_pointer_enter ()
 {
+#ifdef CEU_PORTING
   mouse_over = true;
   Sound::PingusSound::play_sound ("tick");
   //log_info("X: " << this << "enter");
   menu->set_hint(desc);
+#endif
 }
 
 void
 MenuButton::on_pointer_leave ()
 {
+#ifdef CEU_PORTING
   //log_info("X: " << this << "leave");
   mouse_over = false;
   menu->set_hint("");
+#endif
 }
 
 void

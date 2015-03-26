@@ -15,6 +15,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "engine/gui/group_component.hpp"
+#include "ceuvars.h"
 
 namespace GUI {
 
@@ -229,12 +230,16 @@ GroupComponent::on_pointer_move(int x, int y)
       {
         mouse_over_comp->set_mouse_over(false);
         mouse_over_comp->on_pointer_leave();
+        printf("saiu %p\n", mouse_over_comp);
+        ceu_sys_go(&CEUapp,CEU_IN_ON_POINTER_LEAVE, mouse_over_comp);
       }
       
       if (comp)
       {
         comp->set_mouse_over(true);
         comp->on_pointer_enter();
+        printf("entrou %p\n", comp);
+        ceu_sys_go(&CEUapp,CEU_IN_ON_POINTER_ENTER, comp);
       }
     }
 
