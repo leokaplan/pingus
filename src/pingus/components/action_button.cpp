@@ -21,6 +21,8 @@
 #include "pingus/server.hpp"
 #include "pingus/world.hpp"
 
+#include "ceuvars.h"
+
 ArmageddonButton::ArmageddonButton(Server* s, int x, int y) :
   RectComponent(Rect(Vector2i(x, y), Size(38, 60))),
   server(s),
@@ -32,6 +34,7 @@ ArmageddonButton::ArmageddonButton(Server* s, int x, int y) :
 {
   pressed      = false;
   sprite       = Sprite("core/buttons/armageddon_anim");
+  ceu_sys_go(&CEUapp,CEU_IN_NEWARMAGEDDON, this);
 }
 
 ArmageddonButton::~ArmageddonButton () 
@@ -60,8 +63,9 @@ ArmageddonButton::draw (DrawingContext& gc)
 void
 ArmageddonButton::update (float delta)
 {
-  sprite.update(delta);
 
+#ifdef CEU_PORTING
+  sprite.update(delta);
   if (pressed)
   {
     press_time += delta;
@@ -76,11 +80,14 @@ ArmageddonButton::update (float delta)
     pressed = false;
     press_time = 0;
   }
+#ifdef CEU_PORTING
 }
 
 void
 ArmageddonButton::on_primary_button_click (int x, int y)
 {
+  ceu_sys_go(&CEUapp,CEU_IN_ARMAGEDDONCLICK,NULL );
+#ifdef CEU_PORTING
   if (pressed)
   {
     server->send_armageddon_event();
@@ -89,6 +96,7 @@ ArmageddonButton::on_primary_button_click (int x, int y)
   {
     pressed = true;
   }
+#ifdef CEU_PORTING
 }
 
 ForwardButton::ForwardButton(GameSession* s, int x, int y) :

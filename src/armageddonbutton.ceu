@@ -1,0 +1,28 @@
+
+input void SDL_REDRAW;
+input void ARMAGEDDONCLICK;
+native do
+    ##include "pingus/components/action_button.hpp"
+end
+
+class ArmageddonButton with
+    var _ArmageddonButton[] me;
+do
+    par/or do 
+        var int dt;
+        every dt in SDL_DT do
+            me:sprite.update(delta);
+        end
+    with
+        loop do
+            par/or do 
+                await 1s;
+            with
+                await ARMAGEDDONCLICK; 
+                await ARMAGEDDONCLICK;
+                me:server:send_armageddon_event();
+            end    
+            
+        end
+    end    
+end

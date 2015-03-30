@@ -1,67 +1,17 @@
 input void SDL_REDRAW;
 input _MenuButton* NEWBUTTON;
-input _GUI_Component* ON_POINTER_ENTER;
-input _GUI_Component* ON_POINTER_LEAVE;
-
 #include "c.ceu"
-
-native @nohold _CLEAR();
 native do
     ##define private public
     ##define protected public
-    ##include "pingus/components/menu_button.hpp"
-    ##include "src/pingus/screens/pingus_menu.hpp"
-    ##define GUI_Component GUI::Component
-    ##define CLEAR(gui) gui->menu->set_hint("")
 end
-
-class MenuButton with
-    var _MenuButton[] me;
-do
-    //var bool mouse_over;
-    //par do
-        loop do 
-            var _GUI_Component[] gui1 = await ON_POINTER_ENTER
-                                  until (gui1 == (_GUI_Component*)me);
-            var _MenuButton[] but1 = (_MenuButton*)gui1;
-            _printf("enter %p %p\n", gui1, me);
-            but1:mouse_over = true;
-            //call {Sound::PingusSound::play_sound}("tick");
-            but1:menu:set_hint(but1:desc)
-                finalize with
-                    //_CLEAR(but1);
-                end;
-            var _GUI_Component[] gui2 = await ON_POINTER_LEAVE
-                                  until (gui2 == (_GUI_Component*)me);
-            var _MenuButton[] but2 = (_MenuButton*)gui2;
-            _printf("leave %p %p\n", gui2, me);
-            but2:mouse_over = false;
-            //gui:menu:set_hint("");
-            _CLEAR(but2);
-        end
-        /*
-    with
-        every REDRAW do
-          if (mouse_over) // pressed
-          {
-            gc.draw(surface_p,Vector2i(x_pos, y_pos));
-            gc.draw(highlight, Vector2i(x_pos, y_pos));
-            gc.print_center(font_large, Vector2i(x_pos, y_pos - 28), text);
-          }
-          else
-          {
-            gc.draw(surface_p, Vector2i(x_pos, y_pos));
-            gc.print_center(font_large, Vector2i(x_pos, y_pos - 28), text);
-          }
-        end
-    end
-    */
-end
-
-var _MenuButton[] but;
-every but in NEWBUTTON do
-    spawn MenuButton with
-        _printf("entrou newbutton %p\n", but);
-        this.me = but;
-    end;
-end
+#include "menubutton.ceu"
+#include "armageddonbutton.ceu"
+#define instance(eventname,classname,varname,thisname) var _classname[] varname;    /
+                                   every varname in eventname do /    
+                                       spawn classname with /
+                                           this.thisname = varname;    /
+                                       end;                  /
+                                   end                      
+instance(NEWBUTTON,MenuButton,menubut,me)
+instance(NEWARMAGEDDON,ArmageddonButton,armabut,me)
