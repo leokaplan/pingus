@@ -77,7 +77,7 @@ class Project:
         self.opts.Add('CPPDEFINES', 'defined constants', [])
         self.opts.Add('LIBS',       'Additional libraries', [])
         self.opts.Add('CCFLAGS',    'C Compiler flags', [])
-        self.opts.Add('CXXFLAGS',   'C++ Compiler flags', ["-O2", "-s", "-fpermissive"])
+        self.opts.Add('CXXFLAGS',   'C++ Compiler flags', ["-O2", "-s", "-fpermissive","-g"])
         self.opts.Add('LINKFLAGS',  'Linker Compiler flags', [])
 
         self.opts.Add(BoolVariable('with_opengl',        'Build with OpenGL support', True))

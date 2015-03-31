@@ -175,6 +175,7 @@ ScreenManager::display()
   while (!screens.empty())
   {
     events.clear();
+    Uint32 dt;
       
     // Get time and update Input::Events
     if (playback_input)
@@ -193,14 +194,14 @@ ScreenManager::display()
       // Get Time
       Uint32 ticks = SDL_GetTicks();
       previous_frame_time  = float(ticks - last_ticks)/1000.0f;
+      dt = ticks - last_ticks;
       last_ticks = ticks;
-
       // Update InputManager and get Events
       input_manager.update(previous_frame_time);
       input_controller->poll_events(events);
+      ceu_sys_go(&CEUapp, CEU_IN__WCLOCK, 1000*dt);
+      ceu_sys_go(&CEUapp, CEU_IN_SDL_DT, dt);
     }
-    ceu_sys_go(&CEUapp, CEU_IN__WCLOCK, &previous_frame_time);
-    ceu_sys_go(&CEUapp, CEU_IN_SDL_DT, &previous_frame_time);
 
     if (record_input)
     {

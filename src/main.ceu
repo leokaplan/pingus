@@ -43,4 +43,13 @@ with
            this.me = menubut;    
        end;                  
     end 
+with
+    every 1s do
+        _printf("1 sec\n");
+    end
+with
+    var int dt;
+    every dt in SDL_DT do
+        _printf("dt %d\n",dt);
+    end
 end
