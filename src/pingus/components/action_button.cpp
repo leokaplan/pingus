@@ -63,7 +63,7 @@ ArmageddonButton::draw (DrawingContext& gc)
 void
 ArmageddonButton::update (float delta)
 {
-
+  ceu_sys_go(&CEUapp,CEU_IN_ARMA_DT,delta*1000 );
 #ifdef CEU_PORTING
   sprite.update(delta);
   if (pressed)

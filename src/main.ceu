@@ -1,4 +1,5 @@
 input void SDL_REDRAW;
+input int SDL_DT;
 input _MenuButton* NEWBUTTON;
 input _ArmageddonButton* NEWARMAGEDDON;
 #include "c.ceu"

@@ -1,6 +1,6 @@
 
 input void SDL_REDRAW;
-input int SDL_DT;
+input int ARMA_DT;
 input void ARMAGEDDONCLICK;
 native do
     ##include "pingus/components/action_button.hpp"
@@ -10,14 +10,15 @@ end
 class ArmageddonButton with
     var _ArmageddonButton[] me;
 do
-    _printf("armageddon spawned");
-    par/and do 
+    _printf("armageddon spawned\n");
+    par do 
         var int dt;
-        every dt in SDL_DT do
-            me:sprite.update(dt);
+        every dt in ARMA_DT do
+            me:sprite.update(((float)dt)/1000);
         end
     with
         loop do
+            _printf("armageddon watch\n");
             watching 1s do 
                 await ARMAGEDDONCLICK; 
                 _printf("armageddon click1\n");
