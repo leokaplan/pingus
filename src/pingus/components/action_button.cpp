@@ -80,13 +80,13 @@ ArmageddonButton::update (float delta)
     pressed = false;
     press_time = 0;
   }
-#ifdef CEU_PORTING
+#endif
 }
 
 void
 ArmageddonButton::on_primary_button_click (int x, int y)
 {
-  ceu_sys_go(&CEUapp,CEU_IN_ARMAGEDDONCLICK,NULL );
+  ceu_sys_go(&CEUapp,CEU_IN_ARMAGEDDONCLICK,nullptr );
 #ifdef CEU_PORTING
   if (pressed)
   {
@@ -96,7 +96,7 @@ ArmageddonButton::on_primary_button_click (int x, int y)
   {
     pressed = true;
   }
-#ifdef CEU_PORTING
+#endif
 }
 
 ForwardButton::ForwardButton(GameSession* s, int x, int y) :

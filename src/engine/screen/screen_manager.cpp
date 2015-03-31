@@ -200,6 +200,7 @@ ScreenManager::display()
       input_controller->poll_events(events);
     }
     ceu_sys_go(&CEUapp, CEU_IN__WCLOCK, &previous_frame_time);
+    ceu_sys_go(&CEUapp, CEU_IN_SDL_DT, &previous_frame_time);
 
     if (record_input)
     {
