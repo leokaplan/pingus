@@ -1,15 +1,20 @@
-input void SDL_REDRAW;
-input int SDL_DT;
-input _MenuButton* NEWBUTTON;
-input _ArmageddonButton* NEWARMAGEDDON;
-#include "c.ceu"
-#include "sdl.ceu"
-native do
+native/pre do
     ##define private public
     ##define protected public
 end
+
+#include "c.ceu"
+#include "sdl.ceu"
+
+input void SDL_REDRAW;
+input int SDL_DT;
+
 #include "menubutton.ceu"
 #include "armageddonbutton.ceu"
+
+input _MenuButton* NEWBUTTON;
+input _ArmageddonButton* NEWARMAGEDDON;
+
 /*
 #define instance(eventname,classname,varname,thisname) var _classname* varname;    /
                                    every varname in eventname do /

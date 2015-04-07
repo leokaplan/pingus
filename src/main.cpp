@@ -19,8 +19,8 @@
 #include "engine/display/display.hpp"
 #include "engine/display/framebuffer.hpp"
 #include "pingus/pingus_main.hpp"
-#include "ceuvars.h"
 
+#include "ceuvars.h"
 #include "_ceu_app.c"
 
 //SDL_Renderer * m_renderer;

@@ -23,6 +23,7 @@
 #include "util/log.hpp"
 
 #include "ceuvars.h"
+
 namespace {
 
 SDL_Rect Intersection(SDL_Rect* r1, SDL_Rect* r2)
