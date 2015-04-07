@@ -34,7 +34,8 @@ ArmageddonButton::ArmageddonButton(Server* s, int x, int y) :
 {
   pressed      = false;
   sprite       = Sprite("core/buttons/armageddon_anim");
-  ceu_sys_go(&CEUapp,CEU_IN_NEWARMAGEDDON, this);
+  void* v = this;
+  ceu_sys_go(&CEUapp,CEU_IN_NEWARMAGEDDON, &v);
 }
 
 ArmageddonButton::~ArmageddonButton () 
@@ -63,7 +64,8 @@ ArmageddonButton::draw (DrawingContext& gc)
 void
 ArmageddonButton::update (float delta)
 {
-  ceu_sys_go(&CEUapp,CEU_IN_ARMA_DT,delta*1000 );
+  int dt_us = delta*1000;
+  ceu_sys_go(&CEUapp,CEU_IN_ARMA_DT,&dt_us);
 #ifdef CEU_PORTING
   sprite.update(delta);
   if (pressed)

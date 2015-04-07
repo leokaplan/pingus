@@ -53,7 +53,8 @@ MenuButton::MenuButton(PingusMenu* menu_,
   mouse_over = false;
   pressed    = false;
 
-  ceu_sys_go(&CEUapp,CEU_IN_NEWBUTTON, this);
+  void* v = this;
+  ceu_sys_go(&CEUapp,CEU_IN_NEWBUTTON, &v);
 }
 
 MenuButton::~MenuButton ()

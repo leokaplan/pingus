@@ -27,9 +27,8 @@
 #include "pingus/fonts.hpp"
 #include "pingus/globals.hpp"
 
-#include "_ceu_app.h"
 #include "ceuvars.h"
-//#include "_ceu_app.h"
+
 template<class C>
 void write(std::ostream& out, const C& value)
 {
@@ -199,8 +198,9 @@ ScreenManager::display()
       // Update InputManager and get Events
       input_manager.update(previous_frame_time);
       input_controller->poll_events(events);
-      ceu_sys_go(&CEUapp, CEU_IN__WCLOCK, 1000*dt);
-      ceu_sys_go(&CEUapp, CEU_IN_SDL_DT, dt);
+      int dt_us = 1000*dt;
+      ceu_sys_go(&CEUapp, CEU_IN__WCLOCK, &dt_us);
+      ceu_sys_go(&CEUapp, CEU_IN_SDL_DT, &dt);
     }
 
     if (record_input)
