@@ -15,7 +15,7 @@ class MenuButton with
 do
     //var bool mouse_over;
     //par do
-        loop do 
+        loop do
             var _GUI_Component[] gui1 = await ON_POINTER_ENTER
                                   until (gui1 == (_GUI_Component*)me);
             var _MenuButton[] but1 = (_MenuButton*)gui1;

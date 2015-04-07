@@ -11,7 +11,7 @@ class ArmageddonButton with
     var _ArmageddonButton[] me;
 do
     _printf("armageddon spawned\n");
-    par do 
+    par do
         var int dt;
         every dt in ARMA_DT do
             me:sprite.update(((float)dt)/1000);
@@ -19,14 +19,14 @@ do
     with
         loop do
             _printf("armageddon watch\n");
-            watching 1s do 
-                await ARMAGEDDONCLICK; 
+            watching 1s do
+                await ARMAGEDDONCLICK;
                 _printf("armageddon click1\n");
                 await ARMAGEDDONCLICK;
                 _printf("armageddon click2\n");
                 me:server:send_armageddon_event();
                 _printf("armageddon sent\n");
-            end    
+            end
         end
-    end    
+    end
 end

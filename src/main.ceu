@@ -12,37 +12,37 @@ end
 #include "armageddonbutton.ceu"
 /*
 #define instance(eventname,classname,varname,thisname) var _classname[] varname;    /
-                                   every varname in eventname do /    
+                                   every varname in eventname do /
                                        spawn classname with /
                                            this.thisname = varname;    /
                                        end;                  /
-                                   end                      
+                                   end
 
 instance(NEWBUTTON,MenuButton,menubut,me)
 
 instance(NEWARMAGEDDON,ArmageddonButton,armabut,me)
-var _classname[] varname;    
-every varname in eventname do     
-   spawn classname with 
-       this.thisname = varname;    
-   end;                  
-end                      
+var _classname[] varname;
+every varname in eventname do
+   spawn classname with
+       this.thisname = varname;
+   end;
+end
 */
-var _ArmageddonButton[] armabut;    
-var _MenuButton[] menubut;    
+var _ArmageddonButton[] armabut;
+var _MenuButton[] menubut;
 
 par/or do
-    every armabut in NEWARMAGEDDON do     
-       spawn ArmageddonButton with 
-           this.me = armabut;    
-       end;                  
-    end                      
+    every armabut in NEWARMAGEDDON do
+       spawn ArmageddonButton with
+           this.me = armabut;
+       end;
+    end
 with
-    every menubut in NEWBUTTON do     
-       spawn MenuButton with 
-           this.me = menubut;    
-       end;                  
-    end 
+    every menubut in NEWBUTTON do
+       spawn MenuButton with
+           this.me = menubut;
+       end;
+    end
 with
     every 1s do
         _printf("1 sec\n");
