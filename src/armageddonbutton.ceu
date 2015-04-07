@@ -8,7 +8,7 @@ native do
 end
 
 class ArmageddonButton with
-    var _ArmageddonButton[] me;
+    var _ArmageddonButton* me;
 do
     _printf("armageddon spawned\n");
     par do

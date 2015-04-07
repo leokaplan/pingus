@@ -11,7 +11,7 @@ end
 #include "menubutton.ceu"
 #include "armageddonbutton.ceu"
 /*
-#define instance(eventname,classname,varname,thisname) var _classname[] varname;    /
+#define instance(eventname,classname,varname,thisname) var _classname* varname;    /
                                    every varname in eventname do /
                                        spawn classname with /
                                            this.thisname = varname;    /
@@ -21,15 +21,15 @@ end
 instance(NEWBUTTON,MenuButton,menubut,me)
 
 instance(NEWARMAGEDDON,ArmageddonButton,armabut,me)
-var _classname[] varname;
+var _classname* varname;
 every varname in eventname do
    spawn classname with
        this.thisname = varname;
    end;
 end
 */
-var _ArmageddonButton[] armabut;
-var _MenuButton[] menubut;
+var _ArmageddonButton* armabut;
+var _MenuButton* menubut;
 
 par/or do
     every armabut in NEWARMAGEDDON do
