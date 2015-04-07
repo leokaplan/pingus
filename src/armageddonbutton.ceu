@@ -1,9 +1,11 @@
+native/pre do
+    ##include "pingus/components/action_button.hpp"
+end
 
 input void SDL_REDRAW;
 input int ARMA_DT;
 input void ARMAGEDDONCLICK;
 native do
-    ##include "pingus/components/action_button.hpp"
     ##include "pingus/server.hpp"
 end
 

@@ -1,12 +1,14 @@
 input _GUI_Component* ON_POINTER_ENTER;
 input _GUI_Component* ON_POINTER_LEAVE;
 
+native/pre do
+    ##include "pingus/components/menu_button.hpp"
+    ##define GUI_Component GUI::Component
+end
 
 native @nohold _CLEAR();
 native do
-    ##include "pingus/components/menu_button.hpp"
     ##include "src/pingus/screens/pingus_menu.hpp"
-    ##define GUI_Component GUI::Component
     ##define CLEAR(gui) gui->menu->set_hint("")
 end
 
