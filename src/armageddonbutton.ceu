@@ -10,13 +10,13 @@ native do
 end
 
 class ArmageddonButton with
-    var _ArmageddonButton* me;
+    var _ArmageddonButton&? me;
 do
     _printf("armageddon spawned\n");
     par do
         var int dt;
         every dt in ARMA_DT do
-            me:sprite.update(((float)dt)/1000);
+            me.sprite.update(((float)dt)/1000);
         end
     with
         loop do
@@ -26,7 +26,7 @@ do
                 _printf("armageddon click1\n");
                 await ARMAGEDDONCLICK;
                 _printf("armageddon click2\n");
-                me:server:send_armageddon_event();
+                me.server:send_armageddon_event();
                 _printf("armageddon sent\n");
             end
         end

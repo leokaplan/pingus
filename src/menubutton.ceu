@@ -13,15 +13,15 @@ native do
 end
 
 class MenuButton with
-    var _MenuButton* me;
+    var _MenuButton&? me;
 do
     //var bool mouse_over;
     //par do
         loop do
             var _GUI_Component* gui1 = await ON_POINTER_ENTER
-                                  until (gui1 == (_GUI_Component*)me);
+                                  until (gui1 == (_GUI_Component*)&me);
             var _MenuButton* but1 = (_MenuButton*)gui1;
-            _printf("enter %p %p\n", gui1, me);
+            _printf("enter %p %p\n", gui1, &me);
             but1:mouse_over = true;
             //call {Sound::PingusSound::play_sound}("tick");
             but1:menu:set_hint(but1:desc)
@@ -29,9 +29,9 @@ do
                     //_CLEAR(but1);
                 end;
             var _GUI_Component* gui2 = await ON_POINTER_LEAVE
-                                  until (gui2 == (_GUI_Component*)me);
+                                  until (gui2 == (_GUI_Component*)&me);
             var _MenuButton* but2 = (_MenuButton*)gui2;
-            _printf("leave %p %p\n", gui2, me);
+            _printf("leave %p %p\n", gui2, &me);
             but2:mouse_over = false;
             //gui:menu:set_hint("");
             _CLEAR(but2);

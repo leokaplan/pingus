@@ -36,18 +36,27 @@ end
 var _ArmageddonButton* armabut;
 var _MenuButton* menubut;
 
-par/or do
+par do
     every armabut in NEWARMAGEDDON do
-       spawn ArmageddonButton with
-           this.me = armabut;
+        spawn ArmageddonButton with
+            finalize
+                this.me = _UNSAFE_POINTER_TO_REFERENCE(armabut);
+            with
+                nothing;
+            end
        end;
     end
 with
     every menubut in NEWBUTTON do
-       spawn MenuButton with
-           this.me = menubut;
-       end;
+        spawn MenuButton with
+            finalize
+                this.me = _UNSAFE_POINTER_TO_REFERENCE(menubut);
+            with
+                nothing;
+            end
+        end;
     end
+#if 1
 with
     every 1s do
         _printf("1 sec\n");
@@ -57,4 +66,5 @@ with
     every dt in SDL_DT do
         _printf("dt %d\n",dt);
     end
+#endif
 end
