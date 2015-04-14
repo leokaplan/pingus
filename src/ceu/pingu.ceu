@@ -1,0 +1,78 @@
+native/pre do
+    ##include "pingus/pingu.hpp"
+    ##include "pingus/pingu_action.hpp"
+    ##include "pingus/collision_map.hpp"
+end
+input void SDL_REDRAW;
+input _Pingu* PINGU_UPDATE;
+
+class Pingu with
+    var _Pingu&? me;
+do
+    _printf("pingu spawned\n");
+#if 0
+    par do
+        var int dt;
+        every dt in PINGU_DT do
+            me.sprite.update(((float)dt)/1000);
+        end
+    with
+        loop do
+            _printf("armageddon watch\n");
+            watching 1s do
+                await ARMAGEDDONCLICK;
+                _printf("armageddon click1\n");
+                await ARMAGEDDONCLICK;
+                _printf("armageddon click2\n");
+                me.server:send_armageddon_event();
+                _printf("armageddon sent\n");
+            end
+        end
+    end
+#endif
+#if 0
+    //qnd o organismo acaba
+    finalize with
+        { delete &this.me; }
+    end
+#endif
+    //main loop
+        loop do
+            var _Pingu* pingu = await PINGU_UPDATE until (pingu == (_Pingu*)&me);
+            if me.status == {Pingu::PS_DEAD} then
+                break;
+            end
+            if me.rel_getpixel(0, -1) == {Groundtype::GP_OUTOFSCREEN} then
+                finalize
+                    me.status = {Pingu::PS_DEAD};
+                with
+                    nothing;
+                end;
+                break;
+            end
+            if me.action_time > -1 then
+                me.action_time = me.action_time - 1; 
+            end
+            if me.action_time == 0 and me.countdown_action then
+                me.set_action(me.countdown_action) finalize with nothing; end;
+                
+                // Reset the countdown action handlers
+                finalize
+                    me.countdown_action = {std::shared_ptr<PinguAction>()};
+                with 
+                    nothing;
+                end;
+                me.action_time = -1;
+                break;
+            end
+            me.action:update();
+        end
+#if 0
+    //qnd o pingu morre, parando de responder ao mundo
+    par/or do
+        every DT
+    with//animacao de morte
+        every REDRAW...
+    end
+#endif
+end

@@ -48,6 +48,8 @@
 #include "pingus/actions/waiter.hpp"
 #include "pingus/actions/walker.hpp"
 
+#include "ceuvars.h"
+
 #include "util/log.hpp"
 
 using namespace Actions;
@@ -73,6 +75,8 @@ Pingu::Pingu (int arg_id, const Vector3f& arg_pos, int owner) :
   // Initialisize the action, after this step the action ptr will
   // always be valid in the pingu class
   action = create_action(ActionName::FALLER);
+  void* v = this;
+  ceu_sys_go(&CEUapp,CEU_IN_NEWPINGU, &v);
 }
 
 Pingu::~Pingu ()
@@ -310,6 +314,9 @@ Pingu::dist(int x, int y)
 void
 Pingu::update()
 {
+  void* v = this;
+  ceu_sys_go(&CEUapp,CEU_IN_PINGU_UPDATE, &v);
+#ifdef CEU_PORTING
   if (status == PS_DEAD)
     return;
 
@@ -337,6 +344,7 @@ Pingu::update()
   }
 
   action->update();
+#endif
 }
 
 // Draws the pingu on the screen with the given offset
