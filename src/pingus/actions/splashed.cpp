@@ -20,6 +20,7 @@
 #include "pingus/pingu.hpp"
 #include "pingus/world.hpp"
 #include "pingus/worldobj.hpp"
+#include "ceuvars.h"
 
 namespace Actions {
 
@@ -45,7 +46,10 @@ Splashed::update ()
 
   if (sprite.is_finished())
   {
-    pingu->set_status(Pingu::PS_DEAD);
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
+      pingu->set_status(Pingu::PS_DEAD);
+#endif
   }
 }
 

@@ -18,6 +18,7 @@
 
 #include "engine/display/scene_context.hpp"
 #include "pingus/pingu.hpp"
+#include "ceuvars.h"
 
 namespace Actions {
 
@@ -43,7 +44,10 @@ Drown::update ()
   sprite[pingu->direction].update();
   if (sprite[pingu->direction].is_finished())
   {
-    pingu->set_status(Pingu::PS_DEAD);
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
+      pingu->set_status(Pingu::PS_DEAD);
+#endif
   }
 }
 

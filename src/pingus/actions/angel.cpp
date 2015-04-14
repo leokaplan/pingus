@@ -19,6 +19,7 @@
 #include "engine/display/scene_context.hpp"
 #include "pingus/globals.hpp"
 #include "pingus/pingu.hpp"
+#include "ceuvars.h"
 
 namespace Actions {
 
@@ -40,7 +41,10 @@ Angel::update ()
 
   // Out of screen, let the pingu die
   if (pingu->get_y() < -32)
-    pingu->set_status (Pingu::PS_DEAD);
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
+      pingu->set_status(Pingu::PS_DEAD);
+#endif
 }
 
 void

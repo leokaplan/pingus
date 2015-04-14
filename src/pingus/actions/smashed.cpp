@@ -18,6 +18,7 @@
 
 #include "engine/display/scene_context.hpp"
 #include "pingus/pingu.hpp"
+#include "ceuvars.h"
 
 namespace Actions {
 
@@ -40,8 +41,12 @@ Smashed::update()
 {
   sprite.update();
   //  pingu->particle->add_pingu_explo(pingu->x_pos, pingu->y_pos - 16);
-  if (sprite.is_finished())
-    pingu->set_status(Pingu::PS_DEAD);
+  if (sprite.is_finished()){
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
+      pingu->set_status(Pingu::PS_DEAD);
+#endif
+  }
 }
 
 } // namespace Actions

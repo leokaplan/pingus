@@ -18,6 +18,7 @@
 
 #include "engine/display/scene_context.hpp"
 #include "pingus/pingu.hpp"
+#include "ceuvars.h"
 
 namespace Actions {
 
@@ -38,8 +39,12 @@ LaserKill::draw (SceneContext& gc)
 void
 LaserKill::update ()
 {
-  if (sprite[pingu->direction].is_finished())
-    pingu->set_status(Pingu::PS_DEAD);
+  if (sprite[pingu->direction].is_finished()){
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
+      pingu->set_status(Pingu::PS_DEAD);
+#endif
+  }
   else
     sprite[pingu->direction].update();
 }

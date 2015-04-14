@@ -18,6 +18,7 @@
 
 #include "engine/display/scene_context.hpp"
 #include "pingus/pingu.hpp"
+#include "ceuvars.h"
 
 namespace Actions {
 
@@ -37,7 +38,10 @@ Superman::update ()
   pingu->set_pos(pingu->get_x() + 40.0f * 0.025f, pingu->get_y() - 200.0f * 0.025f);
 
   if (pingu->get_y() < -32)
-    pingu->set_status(Pingu::PS_DEAD);
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
+      pingu->set_status(Pingu::PS_DEAD);
+#endif
 }
 
 void

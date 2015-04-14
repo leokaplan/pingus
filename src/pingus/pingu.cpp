@@ -280,6 +280,7 @@ Pingu::set_status (PinguStatus s)
     void* v = this;
     ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &v);
   }
+  //agora s pode ser apenas EXITED, todos os KILL ja emitem evento e tem sua chamada ignorada
   return (status = s);
 }
 
