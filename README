@@ -5,10 +5,11 @@ Pingus
  Ceu
  
   The idea here is to gradually port this game to the Ceu Language.
-  After the first build, to recompile (and relink) only the changed modules:
-    
-    .../pingus$ scons /src 
-  
+ 
+    there is a rule in the makefile:
+
+        make ceu
+
 Introduction
 
    Pingus is a free Lemmings(tm) clone for GNU/Linux, Win32 and other
