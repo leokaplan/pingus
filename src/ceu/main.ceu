@@ -69,7 +69,11 @@ with
             end
         end;
     end
-#if 1
+#if 0
+with
+    every PINGU_KILL do
+        _printf("kill\n");
+    end
 with
     every 1s do
         _printf("1 sec\n");

@@ -10,7 +10,7 @@ input _Pingu* PINGU_KILL;
 class Pingu with
     var _Pingu&? me;
 do
-    _printf("pingu spawned\n");
+    _printf("pingu spawned %p\n",&me);
     finalize with
         me.status = (int){Pingu::PS_DEAD};
     end
@@ -71,6 +71,7 @@ do
         end
     with
         var _Pingu* pingu2 = await PINGU_KILL until (pingu2 == (_Pingu*)&me);
+        _printf("pingu killed %p", &me);
     end
 #if 0
     //qnd o pingu morre, parando de responder ao mundo

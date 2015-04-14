@@ -20,6 +20,7 @@
 #include "pingus/pingu.hpp"
 #include "pingus/pingu_holder.hpp"
 #include "pingus/world.hpp"
+#include "ceuvars.h"
 
 namespace WorldObjs {
 
@@ -76,7 +77,10 @@ Spike::catch_pingu (Pingu* pingu)
         && pingu->get_pos().x > pos.x +16 - 12 && pingu->get_pos().x < pos.x + 16 + 12
         && pingu->get_pos().y > pos.y          && pingu->get_pos().y < pos.y + 32)
     {
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
       pingu->set_status(Pingu::PS_DEAD);
+#endif
     }
   }
 }

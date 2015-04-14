@@ -20,6 +20,7 @@
 #include "pingus/pingu.hpp"
 #include "pingus/pingu_holder.hpp"
 #include "pingus/world.hpp"
+#include "ceuvars.h"
 
 namespace WorldObjs {
 
@@ -89,7 +90,10 @@ Guillotine::catch_pingu (Pingu* pingu)
                           static_cast<int>(pos.x + 42), static_cast<int>(pos.y + 98)))
     {
       killing = true;
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &pingu);
+#ifdef CEU_PORTING
       pingu->set_status(Pingu::PS_DEAD);
+#endif
       direction = pingu->direction;
       sprite_kill_left.restart();
       sprite_kill_right.restart();
