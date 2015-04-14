@@ -276,6 +276,10 @@ Pingu::get_status (void) const
 Pingu::PinguStatus
 Pingu::set_status (PinguStatus s)
 {
+  if(s == PS_DEAD){
+    void* v = this;
+    ceu_sys_go(&CEUapp,CEU_IN_PINGU_KILL, &v);
+  }
   return (status = s);
 }
 

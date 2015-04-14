@@ -5,11 +5,15 @@ native/pre do
 end
 input void SDL_REDRAW;
 input _Pingu* PINGU_UPDATE;
+input _Pingu* PINGU_KILL;
 
 class Pingu with
     var _Pingu&? me;
 do
     _printf("pingu spawned\n");
+    finalize with
+        me.status = (int){Pingu::PS_DEAD};
+    end
 #if 0
     par do
         var int dt;
@@ -37,11 +41,9 @@ do
     end
 #endif
     //main loop
+    par/or do 
         loop do
             var _Pingu* pingu = await PINGU_UPDATE until (pingu == (_Pingu*)&me);
-            if me.status == {Pingu::PS_DEAD} then
-                break;
-            end
             if me.rel_getpixel(0, -1) == {Groundtype::GP_OUTOFSCREEN} then
                 finalize
                     me.status = {Pingu::PS_DEAD};
@@ -67,6 +69,9 @@ do
             end
             me.action:update();
         end
+    with
+        var _Pingu* pingu2 = await PINGU_KILL until (pingu2 == (_Pingu*)&me);
+    end
 #if 0
     //qnd o pingu morre, parando de responder ao mundo
     par/or do
