@@ -11,9 +11,11 @@ input int SDL_DT;
 
 #include "menubutton.ceu"
 #include "armageddonbutton.ceu"
+#include "pingu.ceu"
 
 input _MenuButton* NEWBUTTON;
 input _ArmageddonButton* NEWARMAGEDDON;
+input _Pingu* NEWPINGU;
 
 /*
 #define instance(eventname,classname,varname,thisname) var _classname* varname;    /
@@ -35,6 +37,7 @@ end
 */
 var _ArmageddonButton* armabut;
 var _MenuButton* menubut;
+var _Pingu* pingu;
 
 par do
     every armabut in NEWARMAGEDDON do
@@ -51,6 +54,16 @@ with
         spawn MenuButton with
             finalize
                 this.me = _UNSAFE_POINTER_TO_REFERENCE(menubut);
+            with
+                nothing;
+            end
+        end;
+    end
+with
+    every pingu in NEWPINGU do
+        spawn Pingu with
+            finalize
+                this.me = _UNSAFE_POINTER_TO_REFERENCE(pingu);
             with
                 nothing;
             end
