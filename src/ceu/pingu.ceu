@@ -6,6 +6,7 @@ end
 input void SDL_REDRAW;
 input _Pingu* PINGU_UPDATE;
 input _Pingu* PINGU_KILL;
+input _Pingu* PINGU_EXIT;
 
 class Pingu with
     var _Pingu&? me;

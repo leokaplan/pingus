@@ -19,6 +19,7 @@
 #include "engine/display/scene_context.hpp"
 #include "engine/sound/sound.hpp"
 #include "pingus/pingu.hpp"
+#include "ceuvars.h"
 
 namespace Actions {
 
@@ -48,7 +49,10 @@ Exiter::update ()
   {
     if (pingu->get_status() != Pingu::PS_EXITED)
     {
+      ceu_sys_go(&CEUapp,CEU_IN_PINGU_EXIT, &pingu);
+#ifdef CEU_PORTING
       pingu->set_status(Pingu::PS_EXITED);
+#endif
     }
   }
 }
