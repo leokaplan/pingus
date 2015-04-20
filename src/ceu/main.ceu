@@ -2,6 +2,9 @@ native/pre do
     ##define private public
     ##define protected public
 end
+native do
+    #define Entrance WorldObjs::Entrance
+end
 
 #include "c.ceu"
 #include "sdl.ceu"
@@ -12,10 +15,12 @@ input int SDL_DT;
 #include "menubutton.ceu"
 #include "armageddonbutton.ceu"
 #include "pingu.ceu"
+#include "entrance.ceu"
 
 input _MenuButton* NEWBUTTON;
 input _ArmageddonButton* NEWARMAGEDDON;
 input _Pingu* NEWPINGU;
+input _Entrance* NEWENTRANCE;
 
 /*
 #define instance(eventname,classname,varname,thisname) var _classname* varname;    /
@@ -38,6 +43,7 @@ end
 var _ArmageddonButton* armabut;
 var _MenuButton* menubut;
 var _Pingu* pingu;
+var _Entrance* entrance;
 
 par do
     every armabut in NEWARMAGEDDON do
@@ -64,6 +70,16 @@ with
         spawn Pingu with
             finalize
                 this.me = _UNSAFE_POINTER_TO_REFERENCE(pingu);
+            with
+                nothing;
+            end
+        end;
+    end
+with
+    every entrance in NEWENTRANCE do
+        spawn Entrance with
+            finalize
+                this.me = _UNSAFE_POINTER_TO_REFERENCE(entrance);
             with
                 nothing;
             end

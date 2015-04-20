@@ -22,6 +22,7 @@
 #include "pingus/pingu_holder.hpp"
 #include "pingus/world.hpp"
 #include "util/log.hpp"
+#include "ceuvars.h"
 
 namespace WorldObjs {
 
@@ -58,6 +59,9 @@ Entrance::Entrance(const FileReader& reader) :
   }
 
   last_release = 150 - release_rate; // wait ~2sec at startup to allow a 'lets go' sound
+  void* v = this;
+  ceu_sys_go(&CEUapp,CEU_IN_NEWENTRANCE, &v);
+  
 }
 
 Entrance::~Entrance ()
@@ -73,12 +77,14 @@ Entrance::get_z_pos () const
 bool
 Entrance::pingu_ready ()
 {
+#ifdef CEU_PORTING
   if (last_release + release_rate < (world->get_time())) {
     last_release = world->get_time();
     return true;
   } else {
     return false;
   }
+#endif
 }
 
 void
@@ -135,10 +141,12 @@ Entrance::create_pingu ()
 void
 Entrance::update ()
 {
+#ifdef CEU_PORTING
   if (pingu_ready() && (! world->check_armageddon()))
   {
     create_pingu();
   }
+#endif
 }
 
 void

@@ -32,6 +32,7 @@
 #include "pingus/worldobj_factory.hpp"
 #include "pingus/worldobjs/entrance.hpp"
 #include "util/log.hpp"
+#include "ceuvars.h"
 
 static
 bool WorldObj_less (WorldObj* a, WorldObj* b)
@@ -215,6 +216,7 @@ World::armageddon(void)
 {
   Sound::PingusSound::play_sound("goodidea");
   do_armageddon = true;
+  ceu_sys_go(&CEUapp,CEU_IN_ARMAGEDDON, NULL);
   armageddon_count = 0;
 }
 
