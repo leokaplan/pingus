@@ -1,0 +1,22 @@
+native/pre do
+    ##include "pingus/worldobjs/entrance.hpp"
+    ##include "pingus/worldobj.hpp"
+end
+native do
+    #define ENTRANCE WorldObjs::Entrance
+end
+input void SDL_REDRAW;
+input void ARMAGEDDON;
+
+class Entrance with
+    var ENTRANCE&? me;
+do
+    _printf("entrance spawned %p\n",&me);
+    par/or do
+        every (me.release_rate)ms do
+            me.create_pingu();
+        end
+    with
+        await ARMAGEDDON;
+    end
+end

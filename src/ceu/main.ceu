@@ -3,7 +3,6 @@ native/pre do
     ##define protected public
 end
 native do
-    #define Entrance WorldObjs::Entrance
 end
 
 #include "c.ceu"
@@ -20,7 +19,8 @@ input int SDL_DT;
 input _MenuButton* NEWBUTTON;
 input _ArmageddonButton* NEWARMAGEDDON;
 input _Pingu* NEWPINGU;
-input _Entrance* NEWENTRANCE;
+input ENTRANCE* NEWENTRANCE;
+input void* NEWENTRANCE;
 
 /*
 #define instance(eventname,classname,varname,thisname) var _classname* varname;    /
@@ -43,7 +43,7 @@ end
 var _ArmageddonButton* armabut;
 var _MenuButton* menubut;
 var _Pingu* pingu;
-var _Entrance* entrance;
+var ENTRANCE* entrance;
 
 par do
     every armabut in NEWARMAGEDDON do
@@ -85,6 +85,8 @@ with
             end
         end;
     end
+#if 0 
+#endif
 #if 0
 with
     every PINGU_KILL do
