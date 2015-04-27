@@ -21,8 +21,8 @@ do
     with
         loop do
 //            _printf("armageddon watch\n");
+            await ARMAGEDDONCLICK;
             watching 1s do
-                await ARMAGEDDONCLICK;
 //                _printf("armageddon click1\n");
                 await ARMAGEDDONCLICK;
 //                _printf("armageddon click2\n");
