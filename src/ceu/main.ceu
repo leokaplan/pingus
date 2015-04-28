@@ -20,7 +20,7 @@ input _MenuButton* NEWBUTTON;
 input _ArmageddonButton* NEWARMAGEDDON;
 input _Pingu* NEWPINGU;
 input ENTRANCE* NEWENTRANCE;
-input void* NEWENTRANCE;
+//input void* NEWENTRANCE;
 
 /*
 #define instance(eventname,classname,varname,thisname) var _classname* varname;    /
